@@ -12,10 +12,9 @@ public class SynchronizedKernel implements Kernel<BankAccount> {
                 .append(" source account ID ").append(sourceAccount.getAccountId())
                 .append(" destination account ID ").append(destinationAccount.getAccountId());
 
-        Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
-
 
         synchronized (sourceAccount) {
+            Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
             // Lock acquired for Source account.
             if (sourceAccount.getAvailableFund() <= amount)
                 throw new IllegalAccessException("Insufficient funds in source account with ID: " + sourceAccount.getAccountId());
@@ -24,8 +23,8 @@ public class SynchronizedKernel implements Kernel<BankAccount> {
                 // Lock acquired for Destination account.
                 destinationAccount.deposit(amount);
             }
+            Log.logger(message.toString() + " -> After process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
         }
 
-        Log.logger(message.toString() + " -> After process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
     }
 }
