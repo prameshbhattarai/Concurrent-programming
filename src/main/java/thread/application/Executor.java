@@ -26,7 +26,7 @@ public class Executor {
 
         ArrayList<Thread> threads = new ArrayList<Thread>();
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 10, new ReentrantLockKernel())));
-        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 20, new ReentrantLockKernel())));
+        threads.add(new Thread(new Processor<BankAccount>(destinationAccount, sourceAccount, 20, new ReentrantLockKernel())));
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 5, new ReentrantLockKernel())));
 
         executeAndWait(threads);
@@ -42,7 +42,7 @@ public class Executor {
 
         ArrayList<Thread> threads = new ArrayList<Thread>();
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 10, new SynchronizedKernel())));
-        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 20, new SynchronizedKernel())));
+        threads.add(new Thread(new Processor<BankAccount>(destinationAccount, sourceAccount, 20, new SynchronizedKernel())));
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 5, new SynchronizedKernel())));
 
         executeAndWait(threads);

@@ -12,13 +12,13 @@ public class ReentrantLockKernel implements Kernel<BankAccount> {
 
     public void transferFund(final BankAccount sourceAccount, final BankAccount destinationAccount, int amount) throws IllegalAccessException {
 
-        // assigning for logger
-        StringBuilder message = new StringBuilder(Thread.currentThread().getName())
-                .append(" source account ID ").append(sourceAccount.getAccountId())
-                .append(" destination account ID ").append(destinationAccount.getAccountId());
-
         try {
-            // lock acquired for fund transfer.
+            // assigning for logger
+            StringBuilder message = new StringBuilder(Thread.currentThread().getName())
+                    .append(" source account ID ").append(sourceAccount.getAccountId())
+                    .append(" destination account ID ").append(destinationAccount.getAccountId())
+                    .append(" amount " + amount);
+            // acquired lock for fund transfer.
             transactionLock.tryLock(2, TimeUnit.MINUTES);
             Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
             if (sourceAccount.getAvailableFund() <= amount)
