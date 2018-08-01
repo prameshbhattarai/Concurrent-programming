@@ -16,7 +16,7 @@ public class SynchronizedKernel implements Kernel<BankAccount> {
                     .append(" amount " + amount);
             Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
             if (sourceAccount.getAvailableFund() <= amount)
-                throw new IllegalAccessException("Insufficient funds in source account with ID: " + sourceAccount.getAccountId());
+                throw new IllegalAccessException("Insufficient funds in source account with ID: " + sourceAccount.getAccountId() + " in thread " + Thread.currentThread().getName());
             sourceAccount.withdraw(amount);
             destinationAccount.deposit(amount);
             Log.logger(message.toString() + " -> After process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
