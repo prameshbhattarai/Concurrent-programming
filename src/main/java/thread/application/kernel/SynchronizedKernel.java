@@ -13,7 +13,7 @@ public class SynchronizedKernel implements Kernel<BankAccount> {
             StringBuilder message = new StringBuilder(Thread.currentThread().getName())
                     .append(" source account ID ").append(sourceAccount.getAccountId())
                     .append(" destination account ID ").append(destinationAccount.getAccountId())
-                    .append(" amount " + amount);
+                    .append(" amount ").append(amount);
             Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
             if (sourceAccount.getAvailableFund() <= amount)
                 throw new IllegalAccessException("Insufficient funds in source account with ID: " + sourceAccount.getAccountId() + " in thread " + Thread.currentThread().getName());

@@ -17,7 +17,7 @@ public class ReentrantLockKernel implements Kernel<BankAccount> {
             StringBuilder message = new StringBuilder(Thread.currentThread().getName())
                     .append(" source account ID ").append(sourceAccount.getAccountId())
                     .append(" destination account ID ").append(destinationAccount.getAccountId())
-                    .append(" amount " + amount);
+                    .append(" amount ").append(amount);
             // acquired lock for fund transfer.
             transactionLock.tryLock(2, TimeUnit.MINUTES);
             Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());

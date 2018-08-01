@@ -1,6 +1,7 @@
 package thread.application;
 
 import thread.application.account.BankAccount;
+import thread.application.kernel.AtomicKernel;
 import thread.application.kernel.ReentrantLockKernel;
 import thread.application.kernel.SynchronizedKernel;
 import thread.application.utility.Log;
@@ -26,7 +27,7 @@ public class Executor {
 
         ArrayList<Thread> threads = new ArrayList<Thread>();
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 10, new ReentrantLockKernel())));
-        threads.add(new Thread(new Processor<BankAccount>(destinationAccount, sourceAccount, 20, new ReentrantLockKernel())));
+        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 20, new ReentrantLockKernel())));
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 5, new ReentrantLockKernel())));
 
         executeAndWait(threads);
@@ -42,8 +43,24 @@ public class Executor {
 
         ArrayList<Thread> threads = new ArrayList<Thread>();
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 10, new SynchronizedKernel())));
-        threads.add(new Thread(new Processor<BankAccount>(destinationAccount, sourceAccount, 20, new SynchronizedKernel())));
+        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 20, new SynchronizedKernel())));
         threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 5, new SynchronizedKernel())));
+
+        executeAndWait(threads);
+
+        Log.logger("All threads are done", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
+    }
+
+    public static void executeAtomic() {
+        BankAccount sourceAccount = new BankAccount(1L, 100);
+        BankAccount destinationAccount = new BankAccount(2L, 80);
+
+        Log.logger("Initial balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
+
+        ArrayList<Thread> threads = new ArrayList<Thread>();
+        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 10, new AtomicKernel())));
+        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 20, new AtomicKernel())));
+        threads.add(new Thread(new Processor<BankAccount>(sourceAccount, destinationAccount, 5, new AtomicKernel())));
 
         executeAndWait(threads);
 
