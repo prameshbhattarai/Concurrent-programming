@@ -6,5 +6,6 @@ public class Main {
         Executor.executeReentrantLock();
         Executor.executeSynchronized();
         Executor.executeAtomic();
+        Executor.executeNoConcurrent();
     }
 }
