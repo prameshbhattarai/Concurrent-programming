@@ -21,12 +21,12 @@ public class BankAccount implements Account {
     }
 
     public void withdraw(int amount) {
-        MimicDBAccess.simulateTransaction(100L);
+        MimicDBAccess.simulateTransaction(2000L);
         this.accountAmount -= amount;
     }
 
     public void deposit(int amount) {
-        MimicDBAccess.simulateTransaction(100L);
+        MimicDBAccess.simulateTransaction(2000L);
         this.accountAmount += amount;
     }
 }
