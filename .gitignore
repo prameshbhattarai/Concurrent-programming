@@ -25,5 +25,8 @@ hs_err_pid*
 # idea
 *.idea
 
+# ds_store
+.DS_Store
+
 # target
 target/
