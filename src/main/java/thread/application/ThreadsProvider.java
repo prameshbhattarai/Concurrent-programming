@@ -5,7 +5,7 @@ import thread.application.kernel.Kernel;
 
 import java.util.ArrayList;
 
-public class Provider {
+public class ThreadsProvider {
 
     /**
      * Provide list of Runnable instances

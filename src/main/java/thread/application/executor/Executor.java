@@ -37,20 +37,20 @@ public class Executor {
     }
 
     /**
-     * Running all the Runnable using {@link ExecutorService}
+     * Running all the Threads using {@link ExecutorService}
      */
-//    public static Consumer<ArrayList<Runnable>> executeRunnable() {
-//        return (runners) -> {
-//            ExecutorService executorService = Executors.newCachedThreadPool();
-//            runners.stream().forEach(executorService::execute);
-//            executorService.shutdown();
-//            try {
-//                boolean finished = executorService.awaitTermination(1, TimeUnit.MINUTES);
-//                if(finished) System.out.println("finish all runnable threads using ExecutorService");
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        };
-//    }
+    public static Consumer<ArrayList<Thread>> executorService() {
+        return (runners) -> {
+            ExecutorService executorService = Executors.newCachedThreadPool();
+            runners.stream().forEach(executorService::execute);
+            executorService.shutdown();
+            try {
+                boolean finished = executorService.awaitTermination(1, TimeUnit.MINUTES);
+                if(finished) System.out.println("finish all runnable threads using ExecutorService");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+    }
 
 }
