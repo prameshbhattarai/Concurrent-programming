@@ -1,10 +1,12 @@
 # thread-application
-__java multi threading implementation__ 
+__java multi threading implementation__  
+Demo Banking fund transfer from Source to destination account using   
+different Concurrent mechanism. 
 
 __Synchronized (Monitors)__  
 Synchronized block by synchronized on monitor object.  
   
-__Reentrant Lock__  
+__Reentrant Lock__    
 Trying to acquire Lock in working Thread and then release the Lock after working thread complete the process.  
   
 __Atomic Reference__  

@@ -3,7 +3,7 @@ package thread.application.executor;
 import thread.application.ThreadsProvider;
 import thread.application.account.BankAccount;
 import thread.application.kernel.AtomicKernel;
-import thread.application.kernel.NoConcurrentKernel;
+import thread.application.kernel.NoLocking;
 import thread.application.kernel.ReentrantLockKernel;
 import thread.application.kernel.SynchronizedKernel;
 import thread.application.utility.Log;
@@ -34,10 +34,10 @@ public class Execute {
         executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new AtomicKernel()));
     }
 
-    public static void executeNoConcurrent(Consumer<ArrayList<Thread>> executor) {
+    public static void executeNoLocking(Consumer<ArrayList<Thread>> executor) {
         BankAccount sourceAccount = new BankAccount(1L, 100);
         BankAccount destinationAccount = new BankAccount(2L, 80);
         Log.logger("Initial balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
-        executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new NoConcurrentKernel()));
+        executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new NoLocking()));
     }
 }

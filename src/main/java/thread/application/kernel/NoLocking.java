@@ -3,7 +3,7 @@ package thread.application.kernel;
 import thread.application.account.BankAccount;
 import thread.application.utility.Log;
 
-public class NoConcurrentKernel implements Kernel<BankAccount>{
+public class NoLocking implements Kernel<BankAccount>{
 
     /**
      * Process the fund transfer process

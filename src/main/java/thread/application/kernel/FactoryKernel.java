@@ -10,7 +10,7 @@ public class FactoryKernel {
         kernelMap.put("reentrant", new ReentrantLockKernel());
         kernelMap.put("synchronized", new SynchronizedKernel());
         kernelMap.put("atomic", new AtomicKernel());
-        kernelMap.put("noConcurrent", new NoConcurrentKernel());
+        kernelMap.put("noConcurrent", new NoLocking());
         return kernelMap.get(kernelType);
     }
 }

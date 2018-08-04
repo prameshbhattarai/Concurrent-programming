@@ -11,7 +11,9 @@ public class Main {
 
     public static void main(String... args) {
 
+        // list of different implementation of Thread executors
         List<Consumer<ArrayList<Thread>>> executors = new ArrayList<>();
+
         // starting thread
         executors.add(Executor.executeThread());
 
@@ -64,6 +66,6 @@ public class Main {
      */
     private static void noLocking(Consumer<ArrayList<Thread>> executor) {
         // not using concurrent, just running threads ...
-        Execute.executeNoConcurrent(executor);
+        Execute.executeNoLocking(executor);
     }
 }
