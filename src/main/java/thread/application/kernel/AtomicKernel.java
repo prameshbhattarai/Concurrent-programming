@@ -7,6 +7,13 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class AtomicKernel implements Kernel<BankAccount> {
 
+    /**
+     * Implementation using {@link AtomicReference}
+     * @param sourceAccount
+     * @param destinationAccount
+     * @param amount
+     * @throws IllegalAccessException
+     */
     @Override
     public void transferFund(BankAccount sourceAccount, BankAccount destinationAccount, int amount) throws IllegalAccessException {
         // setting atomic reference in the source account and destination account

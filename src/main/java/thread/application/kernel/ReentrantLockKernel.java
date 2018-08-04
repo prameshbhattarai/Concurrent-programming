@@ -10,6 +10,13 @@ public class ReentrantLockKernel implements Kernel<BankAccount> {
 
     private final ReentrantLock transactionLock = new ReentrantLock();
 
+    /**
+     * Implementation using {@link ReentrantLock}
+     * @param sourceAccount
+     * @param destinationAccount
+     * @param amount
+     * @throws IllegalAccessException
+     */
     public void transferFund(final BankAccount sourceAccount, final BankAccount destinationAccount, int amount) throws IllegalAccessException {
 
         try {

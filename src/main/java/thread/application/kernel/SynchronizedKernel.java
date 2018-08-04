@@ -5,6 +5,13 @@ import thread.application.utility.Log;
 
 public class SynchronizedKernel implements Kernel<BankAccount> {
 
+    /**
+     * Implementation using {@link synchronized}
+     * @param sourceAccount
+     * @param destinationAccount
+     * @param amount
+     * @throws IllegalAccessException
+     */
     public void transferFund(BankAccount sourceAccount, BankAccount destinationAccount, int amount) throws IllegalAccessException {
         Object lock = new Object();
         // acquired lock for fund transfer.
