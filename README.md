@@ -1,7 +1,6 @@
-# thread-application
+# multi-threading application #
 __java multi threading implementation__  
-Demo Banking fund transfer from Source to destination account using   
-different Concurrent mechanism. 
+Demo Banking fund transfer from Source to destination account using multi-threading. 
 
 __Synchronized (Monitors)__  
 Synchronized block by synchronized on monitor object.  
