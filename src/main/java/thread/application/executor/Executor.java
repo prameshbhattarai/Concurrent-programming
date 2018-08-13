@@ -1,7 +1,5 @@
 package thread.application.executor;
 
-import thread.application.kernel.Kernel;
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,15 +7,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class Executor {
-
-    /**
-     * Starting the thread only, concurrent consistency should be handle by {@link Kernel}
-     */
-    public static Consumer<ArrayList<Thread>> executeThread() {
-        return (threads) -> {
-            threads.stream().forEach(Thread::start);
-        };
-    }
 
     /**
      * Thread.join() will not allow other thread

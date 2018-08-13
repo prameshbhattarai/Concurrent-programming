@@ -14,9 +14,6 @@ public class Main {
         // list of different implementation of Thread executors
         List<Consumer<ArrayList<Thread>>> executors = new ArrayList<>();
 
-        // starting thread
-        executors.add(Executor.executeThread());
-
         // starting thread using thread.join() to control thread execution
         // execute one thread after completion of another
         executors.add(Executor.executeThreadAndWait());
@@ -26,9 +23,9 @@ public class Main {
         // awaiting for completion of threads and shutdown the ExecutorService
         executors.add(Executor.executorService());
 
-        reentrantLock(executors.get(0)); // work consistently
-//        synchronize(executors.get(0)); // issue in transaction, not consistent
-//        atomic(executors.get(0)); // issue in transaction, not consistent
+        reentrantLock(executors.get(0)); // using reentrant locking
+        synchronize(executors.get(0)); // using synchronized block
+        atomic(executors.get(0)); // using optimistic lock
 //        noLocking(executors.get(0)); // buggy
 
     }

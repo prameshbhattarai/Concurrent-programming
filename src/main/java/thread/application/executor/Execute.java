@@ -18,6 +18,7 @@ public class Execute {
         BankAccount destinationAccount = new BankAccount(2L, 80);
         Log.logger("Initial balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
         executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new ReentrantLockKernel()));
+        Log.logger("Final balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
     }
 
     public static void executeSynchronized(Consumer<ArrayList<Thread>> executor) {
@@ -25,6 +26,7 @@ public class Execute {
         BankAccount destinationAccount = new BankAccount(2L, 80);
         Log.logger("Initial balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
         executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new SynchronizedKernel()));
+        Log.logger("Final balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
     }
 
     public static void executeAtomic(Consumer<ArrayList<Thread>> executor) {
@@ -32,6 +34,7 @@ public class Execute {
         BankAccount destinationAccount = new BankAccount(2L, 80);
         Log.logger("Initial balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
         executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new AtomicKernel()));
+        Log.logger("Final balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
     }
 
     public static void executeNoLocking(Consumer<ArrayList<Thread>> executor) {
@@ -39,5 +42,6 @@ public class Execute {
         BankAccount destinationAccount = new BankAccount(2L, 80);
         Log.logger("Initial balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
         executor.accept(ThreadsProvider.getThreads(sourceAccount, destinationAccount, new NoLocking()));
+        Log.logger("Final balance", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
     }
 }
