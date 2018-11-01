@@ -26,13 +26,15 @@ public class ReentrantLockKernel implements Kernel<BankAccount> {
                     .append(" destination account ID ").append(destinationAccount.getAccountId())
                     .append(" amount ").append(amount);
             // acquired lock for fund transfer.
-            transactionLock.tryLock(2, TimeUnit.MINUTES);
-            Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
-            if (sourceAccount.getAvailableFund() <= amount)
-                throw new IllegalAccessException("Insufficient funds in source account with ID: " + sourceAccount.getAccountId() + " in thread " + Thread.currentThread().getName());
-            sourceAccount.withdraw(amount);
-            destinationAccount.deposit(amount);
-            Log.logger(message.toString() + " -> After process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
+            if(transactionLock.tryLock(2, TimeUnit.MINUTES)) {
+                Log.logger(message.toString() + " -> Before process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
+                if (sourceAccount.getAvailableFund() <= amount)
+                    throw new IllegalAccessException("Insufficient funds in source account with ID: " + sourceAccount.getAccountId() + " in thread " + Thread.currentThread().getName());
+                sourceAccount.withdraw(amount);
+                destinationAccount.deposit(amount);
+                Log.logger(message.toString() + " -> After process ", sourceAccount.getAvailableFund(), destinationAccount.getAvailableFund());
+            }
+            
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
